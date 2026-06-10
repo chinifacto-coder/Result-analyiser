@@ -25,6 +25,14 @@ body{
     font-size:42px;
     font-weight:bold;
     margin-top:20px;
+    display:none;
+}
+
+#viewBtn{
+    margin-top:20px;
+    padding:15px 25px;
+    font-size:20px;
+    cursor:pointer;
 }
 </style>
 </head>
@@ -36,31 +44,45 @@ body{
 </div>
 
 <div id="prank">
+
+    <button id="viewBtn" onclick="showResult()">
+        View Result
+    </button>
+
     <div id="quote">
         REALLY BRO 💀<br>
         YOU THINK YOUR SMART<br>
         SYBAU 🥀
     </div>
 
-    <img src="smart.jpg" width="700" alt="Prank Image">
+    <img id="img" src="smart.jpg" width="700" alt="Prank Image" style="display:none;">
+
 </div>
 
-<audio id="sound" preload="auto">
+<audio id="sound">
     <source src="sound.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+const sound = document.getElementById("sound");
+
+// after 4 seconds show button
 setTimeout(function(){
     document.getElementById("loading").style.display = "none";
     document.getElementById("prank").style.display = "block";
+}, 4000);
 
-    const sound = document.getElementById("sound");
+// when user clicks button
+function showResult() {
+    document.getElementById("viewBtn").style.display = "none";
+    document.getElementById("quote").style.display = "block";
+    document.getElementById("img").style.display = "block";
+
     sound.currentTime = 0;
     sound.play().catch(function(e){
-        console.log("Autoplay blocked by browser");
+        console.log("Audio blocked");
     });
-
-}, 4000);
+}
 </script>
 
 </body>
